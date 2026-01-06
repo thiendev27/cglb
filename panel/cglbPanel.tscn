@@ -1,0 +1,237 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/cglb/panel/cglbPanel.tres" type="Theme" id=1]
+[ext_resource path="res://addons/cglb/panel/cglbPanel.gd" type="Script" id=2]
+[ext_resource path="res://addons/cglb/panel/component/MeshSelectionPanel.gd" type="Script" id=3]
+[ext_resource path="res://addons/cglb/panel/component/TopBar.gd" type="Script" id=4]
+[ext_resource path="res://addons/cglb/panel/component/Body.gd" type="Script" id=5]
+
+[node name="cglbPanel" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 593.0
+mouse_filter = 1
+
+[node name="EmptyLabel" type="Label" parent="CenterContainer"]
+margin_left = 419.0
+margin_top = 193.0
+margin_right = 591.0
+margin_bottom = 393.0
+rect_min_size = Vector2( 0, 200 )
+text = "< Thả file (.glb) vào đây >"
+align = 1
+valign = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 593.0
+mouse_filter = 1
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="EditPanel" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1000.0
+margin_bottom = 576.0
+custom_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/EditPanel"]
+margin_right = 990.0
+margin_bottom = 25.0
+
+[node name="Label" type="Label" parent="MarginContainer/EditPanel/HBoxContainer"]
+margin_right = 419.0
+margin_bottom = 25.0
+text = "> cglb - gen physic bodies from .glb - Made by thiendev with <3"
+
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer/EditPanel"]
+margin_top = 35.0
+margin_right = 990.0
+margin_bottom = 66.0
+script = ExtResource( 4 )
+
+[node name="Save" type="Button" parent="MarginContainer/EditPanel/TopBar"]
+margin_right = 80.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 80, 0 )
+text = "Lưu"
+
+[node name="Exit" type="Button" parent="MarginContainer/EditPanel/TopBar"]
+margin_left = 84.0
+margin_right = 240.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 80, 0 )
+text = "Thoát trình chỉnh sửa"
+
+[node name="Delete" type="Button" parent="MarginContainer/EditPanel/TopBar"]
+margin_left = 244.0
+margin_right = 324.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 80, 0 )
+text = "Xóa scene"
+
+[node name="Body" type="HBoxContainer" parent="MarginContainer/EditPanel"]
+margin_top = 76.0
+margin_right = 990.0
+margin_bottom = 148.0
+custom_constants/separation = 30
+script = ExtResource( 5 )
+
+[node name="Functional" type="VBoxContainer" parent="MarginContainer/EditPanel/Body"]
+margin_right = 307.0
+margin_bottom = 72.0
+custom_constants/separation = 10
+
+[node name="ChooseRoot" type="HBoxContainer" parent="MarginContainer/EditPanel/Body/Functional"]
+margin_right = 307.0
+margin_bottom = 31.0
+
+[node name="Label" type="Label" parent="MarginContainer/EditPanel/Body/Functional/ChooseRoot"]
+margin_top = 3.0
+margin_right = 134.0
+margin_bottom = 28.0
+text = "Chọn kiểu node gốc "
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/EditPanel/Body/Functional/ChooseRoot"]
+margin_left = 138.0
+margin_right = 238.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 100, 30 )
+text = "Spatial"
+items = [ "Spatial", null, false, 0, null, "RigidBody", null, false, 1, null, "KinematicBody", null, false, 2, null, "StaticBody", null, false, 3, null ]
+selected = 0
+
+[node name="Button" type="Button" parent="MarginContainer/EditPanel/Body/Functional/ChooseRoot"]
+margin_left = 242.0
+margin_right = 307.0
+margin_bottom = 31.0
+text = "Áp dụng"
+
+[node name="AddCollision" type="HBoxContainer" parent="MarginContainer/EditPanel/Body/Functional"]
+margin_top = 41.0
+margin_right = 307.0
+margin_bottom = 72.0
+
+[node name="Label" type="Label" parent="MarginContainer/EditPanel/Body/Functional/AddCollision"]
+margin_top = 3.0
+margin_right = 163.0
+margin_bottom = 28.0
+text = "Thêm hình dạng va chạm"
+
+[node name="Button" type="Button" parent="MarginContainer/EditPanel/Body/Functional/AddCollision"]
+margin_left = 167.0
+margin_right = 202.0
+margin_bottom = 31.0
+size_flags_vertical = 4
+text = "[+]"
+
+[node name="InfoPanel" type="VBoxContainer" parent="MarginContainer/EditPanel/Body"]
+margin_left = 337.0
+margin_right = 539.0
+margin_bottom = 72.0
+
+[node name="MergeMesh" type="Button" parent="MarginContainer/EditPanel/Body/InfoPanel"]
+margin_right = 157.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 0
+text = "Hợp nhất toàn bộ lưới"
+
+[node name="SelectedNode" type="Label" parent="MarginContainer/EditPanel/Body/InfoPanel"]
+margin_top = 35.0
+margin_right = 202.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 0, 30 )
+text = "Không có node nào được chọn"
+
+[node name="MeshSelectionPanel" type="PopupPanel" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 515.0
+margin_bottom = 432.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+popup_exclusive = true
+script = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MeshSelectionPanel"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 504.0
+margin_bottom = 421.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 10
+
+[node name="Label" type="Label" parent="MeshSelectionPanel/VBoxContainer"]
+margin_right = 500.0
+margin_bottom = 25.0
+text = "Hãy chọn mesh để thêm hình dạng va chạm"
+align = 1
+
+[node name="ItemList" type="ItemList" parent="MeshSelectionPanel/VBoxContainer"]
+margin_top = 35.0
+margin_right = 500.0
+margin_bottom = 335.0
+rect_min_size = Vector2( 500, 300 )
+max_columns = 6
+same_column_width = true
+icon_mode = 0
+
+[node name="ChooseCollision" type="HBoxContainer" parent="MeshSelectionPanel/VBoxContainer"]
+margin_top = 345.0
+margin_right = 500.0
+margin_bottom = 376.0
+alignment = 2
+
+[node name="Label" type="Label" parent="MeshSelectionPanel/VBoxContainer/ChooseCollision"]
+margin_left = 139.0
+margin_top = 3.0
+margin_right = 299.0
+margin_bottom = 28.0
+text = "Chọn hình dạng va chạm"
+
+[node name="OptionButton" type="OptionButton" parent="MeshSelectionPanel/VBoxContainer/ChooseCollision"]
+margin_left = 303.0
+margin_right = 500.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 100, 30 )
+text = "Va chạm khối hộp (Cube)"
+items = [ "Va chạm khối hộp (Cube)", null, false, 0, null, "Va chạm lõm (Trimesh)", null, false, 1, null, "Va chạm lồi đơn giản hóa (Simplified)", null, false, 2, null, "Va chạm lồi đơn (Single)", null, false, 3, null, "Va chạm lồi nhiều hình dạng (Multiple)", null, false, 4, null, "Va chạm hình trụ (Cylinder)", null, false, 5, null ]
+selected = 0
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Button" type="HBoxContainer" parent="MeshSelectionPanel/VBoxContainer"]
+margin_top = 386.0
+margin_right = 500.0
+margin_bottom = 417.0
+custom_constants/separation = 20
+alignment = 2
+
+[node name="Confirm" type="Button" parent="MeshSelectionPanel/VBoxContainer/Button"]
+margin_left = 280.0
+margin_right = 380.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 100, 0 )
+text = "Chọn"
+
+[node name="Cancel" type="Button" parent="MeshSelectionPanel/VBoxContainer/Button"]
+margin_left = 400.0
+margin_right = 500.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 100, 0 )
+text = "Hủy"
